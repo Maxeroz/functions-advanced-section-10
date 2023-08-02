@@ -1,6 +1,64 @@
 'use strict';
 
+// Functions Returning Functions
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Maksim');
+
+greet('Hi-ho!')('Everybody');
+
+// Challenge
+
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArr('Hi!')('Mate!');
+
+/*
+///////////////////////////////////////////////////
 // Functions Accepting Callback Functions
+
+// My Own Example
+
+const upperFirstLetter = function (str) {
+  const [firstWord, ...others] = str.split(' ');
+  const output = [
+    firstWord.replace(firstWord[0], firstWord[0].toUpperCase()),
+    ...others,
+  ].join(' ');
+  return output;
+};
+
+const allFirstLetterUpperCase = function (str) {
+  const arrayStr = str.split(' ');
+  const emptyArray = [];
+  // console.log(arrayStr);
+  for (const word of arrayStr) {
+    const upperWord = word.replace(word[0], word[0].toUpperCase());
+    emptyArray.push(upperWord);
+  }
+  const finalStr = emptyArray.join(' ');
+  return finalStr;
+  // console.log(finalStr);
+};
+
+const coder = function (str, fN) {
+  console.log(`Original String: ${str}`);
+  console.log(`Changed String: ${fN(str)}`);
+
+  console.log(`Changed by: ${fN.name}`);
+};
+
+coder('maskim ozerskii uzbekistan', upperFirstLetter);
+coder('maskim ozerskii uzbekistan', allFirstLetterUpperCase);
+
+// Course Jonas
 
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
@@ -30,7 +88,6 @@ const high5 = function () {
 document.body.addEventListener('click', high5);
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
-/*
 ///////////////////////////////////////////////////
 // How Passing Arguments Works: Value vs. Reference
 
