@@ -1,5 +1,7 @@
 'use strict';
 
+// The call and apply Methods
+
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -52,6 +54,52 @@ book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
+
+// The bind Method
+// book.call(eurowings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+console.log(eurowings);
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Maksim Ozerskii');
+bookEW23('Martha Cooper');
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+// Partial application
+
+const addTax = (rate, value) => value + value * rate;
+const addVAT = addTax.bind(null, 0.23);
+// addVAT = value => value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(200));
+
+console.log();
+
+const portuTax = function (rate) {
+  return function (value) {
+    console.log(value + value * rate);
+  };
+};
+
+const portuTaxFn = portuTax(0.23);
+portuTaxFn(100);
 /*
 ///////////////////////////////////////////////////
 // Functions Returning Functions
