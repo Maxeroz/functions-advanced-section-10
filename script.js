@@ -1,7 +1,28 @@
 'use strict';
 
-// Immediately Invoked Function Expressions (IIFE)
+///////////////////////////////////////////////////
+// Closures
 
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+/*
+///////////////////////////////////////////////////
+// Immediately Invoked Function Expressions (IIFE)
 const runOnce = function () {
   console.log('This will never run again');
 };
@@ -26,7 +47,7 @@ const runOnce = function () {
 // console.log(isPrivate);
 // console.log(notPrivate);
 
-/*
+///////////////////////////////////////////////////
 // A Closer Look at Functions
 // Coding Challenge #1
 
