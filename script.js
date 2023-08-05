@@ -1,5 +1,17 @@
 'use strict';
+///////////////////////////////////////////////////
+// g
 
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+/*
 ///////////////////////////////////////////////////
 // More Closure Examples
 
@@ -33,13 +45,15 @@ const boardPassengers = function (n, wait) {
   const perGroup = n / 3;
   setTimeout(function () {
     console.log(`We are now boaring all ${n} passengers`);
-    console.log(`There are 3 grops, each with ${perGroup} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
   }, wait * 1000);
 
   console.log(`Will start boarding in ${wait} seconds`);
 };
 
-/*
+const perGroup = 1000;
+boardPassengers(180, 3);
+
 ///////////////////////////////////////////////////
 // Closures
 
